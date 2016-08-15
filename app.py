@@ -13,7 +13,7 @@ def get_connection(db_file):
     conn = sqlite3.connect(db_file)
     return conn
 
-def handle_output(photo_dict):
+def save_to_db(photo_dict):
     """
     this functions gets called when parsed metadata is available from the crawler 
     """
@@ -30,7 +30,7 @@ def handle_output(photo_dict):
         cur.execute(sql, photo_dict.values())
 
 def main():
-    db_file = settings.DB_FILE if settings.DB_FILE else 'flickr.db'
+    db_file = settings.DB_FILE if hasattr(settings, 'DB_FILE') else 'flickr.db'
     setup_db(db_file)
     
     # pass the callback function so that data can be stored in database
@@ -39,7 +39,7 @@ def main():
         'https://www.flickr.com/search/?text=rome',
         'https://www.flickr.com/search/?text=new%20york',
     ]
-    c = FlickrCrawler(start_urls, handle_output)
+    c = FlickrCrawler(start_urls, save_to_db)
     c.start()
 
 if __name__ == "__main__":
