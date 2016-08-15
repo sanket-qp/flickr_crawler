@@ -30,7 +30,7 @@ class FlickrCrawler(BaseCrawler):
 
     def start_workers(self):
         self.logger.info("starting %d worker processes" % self.num_of_workers)
-        print "waiting for child processes to finish"
+        print "waiting for child processes to finish, please check the log file"
         for idx in range(self.num_of_workers):
             p = Process(target=self.worker_process, args=(self.queue, self.lock))
             self.workers.append(p)
