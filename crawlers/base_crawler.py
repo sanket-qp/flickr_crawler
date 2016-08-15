@@ -17,8 +17,15 @@ class BaseCrawler:
         if not hasattr(self, 'start_urls'):
             self.start_urls = []
 
-        log_file = settings.LOG_FILE if settings.LOG_FILE else "%s.log" % self.name
-        log_level = settings.LOG_LEVEL if settings.LOG_LEVEL else logging.DEBUG
+        log_file = '%s.log' % self.name
+        log_level = logging.DEBUG
+
+        if hasattr(settings, 'LOG_FILE'):
+            log_file = settings.LOG_FILE
+
+        if hasattr(settings, 'LOG_LEVEL'):
+            log_level = settings.LOG_LEVEL
+
         self.logger = self.get_logger(log_file, log_level)
         self.num_processes = len(self.start_urls) if self.start_urls else 1
         self.visited = set()

@@ -9,13 +9,13 @@ from base_crawler import BaseCrawler
 
 class FlickrCrawler(BaseCrawler):   
 
-    #def __init__(self, callback = None*args, **kwargs):
-    def __init__(self, callback=None):
+    def __init__(self, start_urls=[], callback=None, **kwargs):
         super(FlickrCrawler, self).__init__('flickr')
         # example: https://www.flickr.com/photos/parismadrid/2099310718
         self.photos_url = 'https://www.flickr.com/photos/%s/%s'
         self.max_retries = 3
         self.callback = callback
+        self.start_urls = start_urls
         self.workers = []
         self.queue = Queue()
         self.lock = Lock()

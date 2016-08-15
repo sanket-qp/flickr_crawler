@@ -34,13 +34,12 @@ def main():
     setup_db(db_file)
     
     # pass the callback function so that data can be stored in database
-    c = FlickrCrawler(handle_output)
     start_urls = [
         'https://www.flickr.com/search/?text=paris',
         'https://www.flickr.com/search/?text=rome',
         'https://www.flickr.com/search/?text=new%20york',
     ]
-    c.set_start_urls(start_urls)
+    c = FlickrCrawler(start_urls, handle_output)
     c.start()
 
 if __name__ == "__main__":
