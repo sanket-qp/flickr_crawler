@@ -1,7 +1,7 @@
 # flickr_crawler
 Simple Flickr Crawler
 
-This is a simple library for crawling *search result pages* of flickr.com. it uses python's multiprocessing module to crawl the webpages and collects the metadata about photos in parallel. 
+This is a simple library for crawling **search results pages** of flickr.com. it uses python's multiprocessing module to crawl the webpages and collects the metadata about photos in parallel. 
 
 ## Quick Start 
 ```python
